@@ -220,14 +220,12 @@ def get_user_ip1():
     data = json.load(urlopen("http://httpbin.org/ip"))
     return data["origin"]
 def get_user_ip():
-    try:
-        response = requests.get("https://api64.ipify.org?format=json")
-        if response.status_code == 200 and "ip" in response.json():
-            return response.json()["ip"]
-    except requests.RequestException:
-        pass
+    headers = st.experimental_get_query_params()
 
-    return "124.109.36.140"
+    # Extract the user's IP address from the headers
+    user_ip = headers.get("remote_ip", "127.0.0.1")
+
+    return user_ip
 def get_employee_password(email):
     conn = sqlite3.connect("attendance.db")
     cursor = conn.cursor()
@@ -247,6 +245,10 @@ def main():
         #if user_ip not in ALLOWED_IP_ADDRESSES:
             #st.error("Access denied. Your IP address is not allowed.")
             #return
+     user_ip = get_user_ip()
+    if user_ip not in ALLOWED_IP_ADDRESSES:
+        st.error("Access denied. Your IP address is not allowed.")
+        return
     #session_state.ip_checked = True
     create_tables()
     #add_data_from_csv("updateddata1.csv")
