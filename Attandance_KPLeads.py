@@ -245,7 +245,7 @@ def main():
         #if user_ip not in ALLOWED_IP_ADDRESSES:
             #st.error("Access denied. Your IP address is not allowed.")
             #return
-     user_ip = get_user_ip()
+    user_ip = get_user_ip()
     if user_ip not in ALLOWED_IP_ADDRESSES:
         st.error("Access denied. Your IP address is not allowed.")
         return
