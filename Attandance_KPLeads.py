@@ -250,6 +250,7 @@ def main():
             #return
     user_ip = get_user_ip()
     if user_ip not in ALLOWED_IP_ADDRESSES:
+        print(user_ip)
         st.error("Access denied. Your IP address is not allowed.")
         return
 
