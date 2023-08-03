@@ -9,7 +9,7 @@ import json
 import atexit
 import requests
 import pytz
-
+import socket
 # Helper function to create tables in SQLite
 #@st.cache_resource(allow_output_mutation=True)
 def create_tables1():
