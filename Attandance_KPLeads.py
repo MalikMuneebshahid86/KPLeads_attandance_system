@@ -306,7 +306,7 @@ def main():
     # Login Page
     else:
         st.subheader("Sign In")
-        email = st.text_input("Email")
+        email = st.text_input("User ID")
         password = st.text_input("Password", type="password")
 
         if st.button("Login"):
