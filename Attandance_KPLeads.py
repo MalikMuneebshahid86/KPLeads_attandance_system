@@ -242,12 +242,12 @@ def main():
     st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
     st.title("Kp Leads Employee Attendance")
     session_state = SessionState(authenticated=False, email="", designation="", hide_signup=False, ip_checked=False)
-    if not session_state.ip_checked:
-        user_ip = get_user_ip()
-        if user_ip not in ALLOWED_IP_ADDRESSES:
-            st.error("Access denied. Your IP address is not allowed.")
-            return
-    session_state.ip_checked = True
+    #if not session_state.ip_checked:
+        #user_ip = get_user_ip()
+        #if user_ip not in ALLOWED_IP_ADDRESSES:
+            #st.error("Access denied. Your IP address is not allowed.")
+            #return
+    #session_state.ip_checked = True
     create_tables()
     #add_data_from_csv("updateddata1.csv")
     if 'authenticated' not in st.session_state:
