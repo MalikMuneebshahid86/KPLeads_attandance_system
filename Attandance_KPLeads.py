@@ -220,15 +220,15 @@ def get_user_ip1():
     data = json.load(urlopen("http://httpbin.org/ip"))
     return data["origin"]
 def get_user_ip():
-    req = st.experimental_request_headers()
-    client_ip = req.get("x-forwarded-for", None)
-    if not client_ip:
-        client_ip = req.get("x-real-ip", None)
-
-    if not client_ip:
-        client_ip = req.get("remote-addr", "127.0.0.1")
-
-    return client_ip
+    try:
+        client_ip = st.request.headers.get('x-forwarded-for')
+        if client_ip is None:
+            client_ip = st.request.headers.get('X-Real-IP')
+        if client_ip is None:
+            client_ip = st.request.client.ip
+        return client_ip
+    except AttributeError:
+        return "127.0.0.1"
 def get_employee_password(email):
     conn = sqlite3.connect("attendance.db")
     cursor = conn.cursor()
