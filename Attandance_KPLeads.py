@@ -248,11 +248,11 @@ def main():
         #if user_ip not in ALLOWED_IP_ADDRESSES:
             #st.error("Access denied. Your IP address is not allowed.")
             #return
-    user_ip = get_user_ip()
-    if user_ip not in ALLOWED_IP_ADDRESSES:
-        print(user_ip)
-        st.error("Access denied. Your IP address is not allowed.")
-        return
+    #user_ip = get_user_ip()
+    #if user_ip not in ALLOWED_IP_ADDRESSES:
+        #print(user_ip)
+        #st.error("Access denied. Your IP address is not allowed.")
+        #return
 
     #st.success("Access granted. You are allowed to access the app.")
     #session_state.ip_checked = True
