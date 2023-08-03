@@ -220,11 +220,8 @@ def get_user_ip1():
     data = json.load(urlopen("http://httpbin.org/ip"))
     return data["origin"]
 def get_user_ip():
-     req = st.experimental_request_headers()
-
-    # Get the client IP address from the request headers
+    req = st.experimental_request_headers()
     client_ip = req.get("x-forwarded-for", None)
-
     if not client_ip:
         client_ip = req.get("x-real-ip", None)
 
