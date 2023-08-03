@@ -220,12 +220,18 @@ def get_user_ip1():
     data = json.load(urlopen("http://httpbin.org/ip"))
     return data["origin"]
 def get_user_ip():
-    headers = st.experimental_get_query_params()
+     req = st.experimental_request_headers()
 
-    # Extract the user's IP address from the headers
-    user_ip = headers.get("remote_ip", "127.0.0.1")
+    # Get the client IP address from the request headers
+    client_ip = req.get("x-forwarded-for", None)
 
-    return user_ip
+    if not client_ip:
+        client_ip = req.get("x-real-ip", None)
+
+    if not client_ip:
+        client_ip = req.get("remote-addr", "127.0.0.1")
+
+    return client_ip
 def get_employee_password(email):
     conn = sqlite3.connect("attendance.db")
     cursor = conn.cursor()
@@ -249,6 +255,8 @@ def main():
     if user_ip not in ALLOWED_IP_ADDRESSES:
         st.error("Access denied. Your IP address is not allowed.")
         return
+
+    #st.success("Access granted. You are allowed to access the app.")
     #session_state.ip_checked = True
     create_tables()
     #add_data_from_csv("updateddata1.csv")
