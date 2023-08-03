@@ -238,8 +238,8 @@ def get_employee_password(email):
 # Define a custom SessionState class to handle attribute initialization
 
 def main():
-    #favicon_path = "/Users/apple/Desktop/KPLeads_attandance_system/KP favicon (1).png"  # Replace with the filename of your custom favicon
-    #st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
+    favicon_path = "https://github.com/MalikMuneebshahid86/KPLeads_attandance_system/blob/master/KP%20favicon%20(1).png"  # Replace with the filename of your custom favicon
+    st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
     st.title("Kp Leads Employee Attendance")
     session_state = SessionState(authenticated=False, email="", designation="", hide_signup=False, ip_checked=False)
     #if not session_state.ip_checked:
@@ -280,14 +280,14 @@ def main():
                 st.error("Email already exists. Please choose a different")
 
 
-    #logo_image = "/Users/apple/Desktop/KPLeads_attandance_system/KP favicon (1).png"
+    logo_image = "https://github.com/MalikMuneebshahid86/KPLeads_attandance_system/blob/master/KP%20favicon%20(1).png"
     # Authentication
-    #col_container = st.container()
-    #col_container.write("")
-    #col1, col2, col3 = col_container.columns([1, 2, 1])
+    col_container = st.container()
+    col_container.write("")
+    col1, col2, col3 = col_container.columns([1, 2, 1])
 
     # Display the image in the center column with size 300x300
-    #col2.image(logo_image, width=200)
+    col2.image(logo_image, width=200)
     #st.sidebar.title("Authentication")
 
     # Signup Page (Only show if signup is not hidden for admins)
