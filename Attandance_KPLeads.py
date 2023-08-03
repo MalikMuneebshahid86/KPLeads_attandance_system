@@ -228,7 +228,7 @@ def get_user_ip():
             client_ip = st.request.client.ip
         return client_ip
     except AttributeError:
-        return "127.0.0.1"
+        return "127.0.0.1","124.109.36.140","39.32.124.20"
 def get_employee_password(email):
     conn = sqlite3.connect("attendance.db")
     cursor = conn.cursor()
