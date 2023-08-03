@@ -280,7 +280,7 @@ def main():
                 st.error("Email already exists. Please choose a different")
 
 
-    logo_image = "MalikMuneebshahid86/KPLeads_attandance_system/blob/master/KP%20favicon%20(1).png"
+    logo_image = "/MalikMuneebshahid86/KPLeads_attandance_system/blob/master/KP%20favicon%20(1).png"
     # Authentication
     col_container = st.container()
     col_container.write("")
