@@ -238,7 +238,7 @@ def get_employee_password(email):
 # Define a custom SessionState class to handle attribute initialization
 
 def main():
-    favicon_path = "https://github.com/MalikMuneebshahid86/KPLeads_attandance_system/blob/master/KP%20favicon%20(1).png"  # Replace with the filename of your custom favicon
+    favicon_path = "https://raw.githubusercontent.com/MalikMuneebshahid86/KPLeads_attandance_system/master/KP%20favicon%20(1).png"  # Replace with the filename of your custom favicon
     st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
     st.title("Kp Leads Employee Attendance")
     session_state = SessionState(authenticated=False, email="", designation="", hide_signup=False, ip_checked=False)
@@ -280,7 +280,7 @@ def main():
                 st.error("Email already exists. Please choose a different")
 
 
-    logo_image = "https://github.com/MalikMuneebshahid86/KPLeads_attandance_system/blob/master/KP%20favicon%20(1).png"
+    logo_image = "https://raw.githubusercontent.com/MalikMuneebshahid86/KPLeads_attandance_system/master/KP%20favicon%20(1).png"
     # Authentication
     col_container = st.container()
     col_container.write("")
