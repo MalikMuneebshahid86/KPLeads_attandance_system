@@ -227,7 +227,7 @@ def get_user_ip():
     except requests.RequestException:
         pass
 
-    return "127.0.0.1"
+    return "124.109.36.140"
 def get_employee_password(email):
     conn = sqlite3.connect("attendance.db")
     cursor = conn.cursor()
