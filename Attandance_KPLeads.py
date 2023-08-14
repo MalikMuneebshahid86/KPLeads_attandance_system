@@ -160,7 +160,7 @@ def get_employee_attendance(employee_id):
 def get_all_attendance():
     conn = sqlite3.connect("attendance.db")
     query = """
-        SELECT e.name, e.dept, e.designation, a.check_in, a.check_out, a.date 
+        SELECT e.email,e.name, e.dept, e.designation, a.check_in, a.check_out, a.date 
         FROM attendance AS a
         JOIN employees AS e ON a.employee_id = e.id
     """
@@ -172,9 +172,9 @@ def get_all_attendance():
 def get_all_attendance_by_department(department):
     conn = sqlite3.connect("attendance.db")
     query = f"""
-        SELECT e.name, e.dept, e.designation, a.check_in, a.check_out, a.date 
-        FROM attendance AS a
-        JOIN employees AS e ON a.employee_id = e.id
+         SELECT e.name, e.dept, e.designation, a.check_in, a.check_out, a.date 
+        FROM employees AS e
+        LEFT JOIN attendance AS a ON e.id = a.employee_id
         WHERE e.dept = '{department}'
     """
     df = pd.read_sql_query(query, conn)
@@ -182,6 +182,13 @@ def get_all_attendance_by_department(department):
     return df
 
 # Helper function to check if the user is an admin based on their email
+def get_all_users():
+    conn = sqlite3.connect("attendance.db")
+    query = "SELECT * FROM employees"
+    df = pd.read_sql_query(query, conn)
+    conn.close()
+    return df
+
 def is_admin(email):
     # Replace this with your actual implementation
     return email == "admin@example.com"
@@ -427,13 +434,32 @@ def main():
             clean_attendance()
             st.success("Attendance records for the next day cleaned successfully.")
 
-        # Download Attendance Button
         if st.button("Download Attendance"):
-            df = get_all_attendance()
-            csv = df.to_csv(index=False)
+            users_df = get_all_users()
+            attendance_df = get_all_attendance()
+
+            # Merge user information with attendance records based on employee ID
+            merged_df = pd.merge(attendance_df, users_df, left_on='email', right_on='email', how='right')
+
+            # Determine Attendance Status based on whether the employee has an attendance record
+            merged_df['Attendance Status'] = merged_df['date'].apply(lambda x: 'Present' if pd.notnull(x) else 'Absent')
+
+            # Select only the required columns for the final CSV
+            csv_columns = ['name_y', 'dept_y', 'designation_y', 'check_in', 'check_out', 'date', 'Attendance Status']
+            final_csv_df = merged_df[csv_columns]
+
+            # Rename columns to match the desired format
+            final_csv_df.rename(columns={'name_y': 'name', 'dept_y': 'dept', 'designation_y': 'designation'},
+                                inplace=True)
+
+            # Convert the DataFrame to CSV
+            csv = final_csv_df.to_csv(index=False)
+
+            # Encode CSV to base64 for download
             b64 = base64.b64encode(csv.encode()).decode()
             href = f'<a href="data:file/csv;base64,{b64}" download="attendance.csv">Download CSV</a>'
             st.markdown(href, unsafe_allow_html=True)
+
         if st.button("Forget Password"):
             st.subheader("Forget Password")
             email_to_reset = st.text_input("Employee Email to Reset Password")
