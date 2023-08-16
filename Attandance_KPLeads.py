@@ -306,8 +306,27 @@ def main():
     #st.sidebar.title("Authentication")
 
     # Signup Page (Only show if signup is not hidden for admins)
-    if st.session_state.authenticated and st.session_state.designation == "Admin":
-        pass
+    if st.session_state.authenticated and st.session_state.designation == "Team Lead":
+        st.sidebar.checkbox("Sign Up")
+
+        #st.subheader("Sign Up")
+        name = st.text_input("Name")
+        dept = st.selectbox("Department",
+                            ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT","FE Csr","MVA Csr", "Development", "HR"])
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
+        designation = st.selectbox("Designation",
+                                   ["Admin", "Team Lead", "Manager", "Intern", "Verifiers", "Closers", "Assistant",
+                                    "Executive"])
+
+        if st.button("Sign Up"):
+            if is_email_unique(email):
+                insert_employee(name, dept, email, password, designation, password_changed=0)
+
+                st.success("Account created successfully. Please sign in.")
+            else:
+                st.error("Email already exists. Please choose a different")
+        #pass
 
 
     # Login Page
