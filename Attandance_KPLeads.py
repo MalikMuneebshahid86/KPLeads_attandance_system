@@ -264,7 +264,7 @@ def main():
     #st.success("Access granted. You are allowed to access the app.")
     #session_state.ip_checked = True
     create_tables()
-    add_data_from_csv("updateddata1.csv")
+    #add_data_from_csv("updateddata1.csv")
     if 'authenticated' not in st.session_state:
         st.session_state['authenticated'] = False
         st.session_state['email'] = ""
