@@ -484,6 +484,7 @@ def main():
 
     if st.session_state.authenticated and st.session_state.designation == "Team Lead":
         st.title("Team Lead Panel")
+        st.sidebar.checkbox("Signup")
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
                                       ["QA", "FE", "Closers", "Medicare", "MVA", "IT", "FE Fronter","MVA Fronter","Development", "HR"])
