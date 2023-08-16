@@ -275,7 +275,7 @@ def main():
     # Handle URL parameters to show/hide signup button for admins
     if st.session_state.authenticated and st.session_state.designation in ["Admin", "Team Lead"]:
         # Allow access to signup
-        #st.sidebar.checkbox("Sign Up")
+        st.sidebar.checkbox("Sign Up")
 
         #st.subheader("Sign Up")
         name = st.text_input("Name")
