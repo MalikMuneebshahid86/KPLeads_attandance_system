@@ -500,9 +500,8 @@ def main():
             st.dataframe(df)
     if st.session_state.authenticated and st.session_state.designation == "Team Lead":
         if st.checkbox("Delete Account"):
-             st.subheader("Delete Account")
-             email_to_delete = st.text_input("Employee Email to Delete Account")
-            #print(email_to_delete)
+            st.subheader("Delete Account")
+            email_to_delete = st.text_input("Employee Email to Delete Account")
             if st.button("Delete"):
                 conn = sqlite3.connect("attendance.db")
                 cursor = conn.cursor()
