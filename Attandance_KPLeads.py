@@ -293,6 +293,8 @@ def main():
                 st.success("Account created successfully. Please sign in.")
             else:
                 st.error("Email already exists. Please choose a different")
+
+
     logo_image = "https://raw.githubusercontent.com/MalikMuneebshahid86/KPLeads_attandance_system/master/KP%20favicon%20(1).png"
     # Authentication
     col_container = st.container()
@@ -304,9 +306,8 @@ def main():
     #st.sidebar.title("Authentication")
 
     # Signup Page (Only show if signup is not hidden for admins)
-    if st.session_state.authenticated and st.session_state.designation == "Team Lead":
+    if st.session_state.authenticated and st.session_state.designation == "Admin":
         pass
-
 
 
     # Login Page
@@ -481,25 +482,6 @@ def main():
             st.dataframe(df)
 
     if st.session_state.authenticated and st.session_state.designation == "Team Lead":
-        if st.checkbox("Delete Account"):
-            st.subheader("Delete Account")
-            email_to_delete = st.text_input("Employee Email to Delete Account")
-            #print(email_to_delete)
-            if st.button("Delete"):
-                conn = sqlite3.connect("attendance.db")
-                cursor = conn.cursor()
-                cursor.execute("DELETE FROM employees WHERE email = ?", (email_to_delete,))
-                if cursor.rowcount > 0:
-                    conn.commit()
-                    conn.close()
-                    st.success("Account deleted successfully.")
-                else:
-                    conn.rollback()
-                    conn.close()
-                    st.error("Employee with the provided email does not exist.")
-
-    if st.session_state.authenticated and st.session_state.designation == "Team Lead":
-
         st.title("Team Lead Panel")
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
