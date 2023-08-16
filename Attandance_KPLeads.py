@@ -273,15 +273,16 @@ def main():
         st.session_state['ip_checked'] = False
 
     # Handle URL parameters to show/hide signup button for admins
-    if st.session_state.authenticated and st.session_state.designation == "Admin":
-        st.sidebar.checkbox("Sign Up")
+    if st.session_state.authenticated and st.session_state.designation in ["Admin", "Team Lead"]:
+        # Allow access to signup
+        #st.sidebar.checkbox("Sign Up")
 
         #st.subheader("Sign Up")
         name = st.text_input("Name")
         dept = st.selectbox("Department",
                             ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT","FE Csr","MVA Csr", "Development", "HR"])
         email = st.text_input("Email")
-        password = st.text_input("Password", type="password")
+        password = st.text_input("Password", type="password", key='password')
         designation = st.selectbox("Designation",
                                    ["Admin", "Team Lead", "Manager", "Intern", "Verifiers", "Closers", "Assistant",
                                     "Executive"])
