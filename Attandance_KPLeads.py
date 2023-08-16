@@ -306,7 +306,7 @@ def main():
     #st.sidebar.title("Authentication")
 
     # Signup Page (Only show if signup is not hidden for admins)
-    if st.session_state.authenticated and st.session_state.designation == "Team Lead":
+    if st.session_state.authenticated and st.session_state.designation == "Admin":
         pass
 
 
