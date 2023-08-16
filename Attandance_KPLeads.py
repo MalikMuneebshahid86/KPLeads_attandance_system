@@ -498,22 +498,6 @@ def main():
             #print(department)
             df = get_all_attendance_by_department(department)
             st.dataframe(df)
-    if st.session_state.authenticated and st.session_state.designation == "Team Lead":
-        if st.checkbox("Delete Account"):
-            st.subheader("Delete Account")
-            email_to_delete = st.text_input("Employee Email to Delete Account")
-            if st.button("Delete"):
-                conn = sqlite3.connect("attendance.db")
-                cursor = conn.cursor()
-                cursor.execute("DELETE FROM employees WHERE email = ?", (email_to_delete,))
-                if cursor.rowcount > 0:
-                    conn.commit()
-                    conn.close()
-                    st.success("Account deleted successfully.")
-                else:
-                    conn.rollback()
-                    conn.close()
-                    st.error("Employee with the provided email does not exist.")
          
             
 
