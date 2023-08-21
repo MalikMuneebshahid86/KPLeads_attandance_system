@@ -477,7 +477,7 @@ def main():
 
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
-                                      ["QA", "FE","FE Fronter", "Medicare", ,"MVA","MVA Fronter", "IT" ,"Closers", "Development", "HR"])
+                                      ["QA", "FE","FE Fronter", "Medicare","MVA","MVA Fronter", "IT" ,"Closers", "Development", "HR"])
             #print(department)
             df = get_all_attendance_by_department(department)
             st.dataframe(df)
