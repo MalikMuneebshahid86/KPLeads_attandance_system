@@ -280,11 +280,11 @@ def main():
         #st.subheader("Sign Up")
         name = st.text_input("Name")
         dept = st.selectbox("Department",
-                            ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT","FE Csr","MVA Csr", "Development", "HR"])
+                            ["QA", "FE" ,"FE Fronter", "Medicare", "MVA Fronter", "IT" ,"Closers", "Development", "HR"])
         email = st.text_input("Email")
         password = st.text_input("Password", type="password", key='password')
         designation = st.selectbox("Designation",
-                                   ["Admin", "Team Lead", "Manager", "Intern", "Verifiers", "Closers", "Assistant",
+                                   ["Admin", "Team Lead","MVA Verifier","FE Verifier", "MC Verifier","FE Csr","MVA Csr", "Manager", "Intern", "Verifiers", "Closers", "Assistant",
                                     "Executive"])
 
         if st.button("Sign Up"):
@@ -477,7 +477,7 @@ def main():
 
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
-                                      ["QA", "FE", "Closers", "Medicare", "MVA", "IT", "FE Fronter","MVA Fronter","Development", "HR"])
+                                      ["QA", "FE","FE Fronter", "Medicare", ,"MVA","MVA Fronter", "IT" ,"Closers", "Development", "HR"])
             #print(department)
             df = get_all_attendance_by_department(department)
             st.dataframe(df)
@@ -504,7 +504,7 @@ def main():
         st.sidebar.checkbox("Signup")
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
-                                      ["QA", "FE", "Closers", "Medicare", "MVA", "IT", "FE Fronter","MVA Fronter","Development", "HR"])
+                                      ["QA", "FE","FE Fronter", "Medicare", ,"MVA","MVA Fronter", "IT" ,"Closers", "Development", "HR"])
             #print(department)
             df = get_all_attendance_by_department(department)
             st.dataframe(df)
@@ -513,10 +513,10 @@ def main():
         st.title("Team Lead Panel")
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
-                                      ["QA", "FE Live", "Closer", "Medicare", "MVA", "IT", "FE Fronter","MVA Fronter", "Development", "HR"])
+                                      ["QA", "FE","FE Fronter", "Medicare", ,"MVA","MVA Fronter", "IT" ,"Closers", "Development", "HR"])
             df = get_all_attendance_by_department(department)
             st.dataframe(df)
-
+            
 
 if __name__ == "__main__":
     main()
