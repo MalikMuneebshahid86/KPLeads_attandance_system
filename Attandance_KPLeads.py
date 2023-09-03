@@ -280,7 +280,7 @@ def main():
         #st.subheader("Sign Up")
         name = st.text_input("Name")
         dept = st.selectbox("Department",
-                            ["QA", "FE" ,"FE Fronter", "Medicare", "MVA Fronter", "IT" ,"Closers", "Development", "HR"])
+                            ["QA", "FE" ,"FE Fronter", "Medicare","MVA", "MVA Fronter", "IT" ,"Closers", "Development", "HR"])
         email = st.text_input("Email")
         password = st.text_input("Password", type="password", key='password')
         designation = st.selectbox("Designation",
